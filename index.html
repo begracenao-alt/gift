@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Be Grace｜Daily Gift</title>
+<meta name="theme-color" content="#3a96bf" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Be Grace" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#3a3b40; --ink-soft:#6f6b6a; --muted:#a59f9c;
+  --bg1:#fbf7f4; --bg2:#eef4f6; --card:#fffdfb;
+  --gold:#c7a36b; --gold-deep:#a9854a; --teal:#5aa8ca; --teal-deep:#3a96bf; --rose:#d9a7ad;
+  --line:#efe7df; --shadow:0 18px 50px rgba(120,110,100,.14);
+  --serif:"Noto Serif JP",serif; --sans:"Noto Sans JP",sans-serif; --script:"Cormorant Garamond","Noto Serif JP",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--sans);color:var(--ink);font-weight:400;line-height:1.9;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(120% 80% at 50% 0%, var(--bg2) 0%, var(--bg1) 55%, var(--bg1) 100%);
+  background-attachment:fixed;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:34px 22px 60px}
+
+/* ブランド */
+.brand{text-align:center;margin-bottom:8px}
+.brand-mark{font-family:var(--script);font-style:italic;font-weight:600;font-size:42px;letter-spacing:.02em;color:var(--gold-deep);line-height:1}
+.brand-sub{font-family:var(--script);font-size:13px;letter-spacing:.5em;text-transform:uppercase;color:var(--teal-deep);margin-top:6px}
+.brand::after{content:"";display:block;width:46px;height:1px;margin:16px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.welcome{text-align:center;color:var(--ink-soft);font-size:13.5px;margin:14px 0 22px}
+
+/* ナビ */
+.nav{display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.nav button{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink-soft);background:rgba(255,255,255,.6);
+  border:1px solid var(--line);border-radius:999px;padding:9px 18px;cursor:pointer;transition:all .2s ease}
+.nav button.active{background:#fff;color:var(--teal-deep);border-color:#cfe4ec;box-shadow:0 6px 18px rgba(58,150,191,.14);font-weight:700}
+
+/* カード */
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:30px 26px;margin-bottom:18px;animation:rise .6s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.date{text-align:center;font-family:var(--script);font-style:italic;font-size:15px;letter-spacing:.06em;color:var(--gold-deep)}
+.greet{text-align:center;font-family:var(--serif);font-size:19px;font-weight:500;margin-top:4px;color:var(--ink)}
+
+.streak{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 2px}
+.streak .num{font-family:var(--serif);font-size:30px;color:var(--teal-deep);font-weight:600;line-height:1}
+.streak .lbl{font-size:12.5px;color:var(--muted)}
+
+.eyebrow{text-align:center;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:14px}
+.word{font-family:var(--serif);font-size:21px;font-weight:500;line-height:2;text-align:center;color:var(--ink);animation:fade 1.1s ease}
+@keyframes fade{from{opacity:0;filter:blur(6px)}to{opacity:1;filter:none}}
+.word-foot{text-align:center;font-family:var(--script);font-style:italic;font-size:15px;color:var(--gold-deep);margin-top:18px}
+
+.btn{display:block;width:100%;font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.06em;color:#fff;
+  background:linear-gradient(135deg,var(--teal),var(--teal-deep));border:none;border-radius:999px;padding:15px;cursor:pointer;
+  box-shadow:0 12px 26px rgba(58,150,191,.26);transition:filter .2s ease,transform .1s ease}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:scale(.99)}
+.btn.soft{background:#fff;color:var(--teal-deep);border:1px solid #cfe4ec;box-shadow:none}
+
+.prompt{font-family:var(--serif);font-size:16px;text-align:center;color:var(--ink);margin-bottom:14px}
+textarea{font-family:var(--sans);font-size:14px;line-height:1.8;width:100%;min-height:90px;border:1px solid var(--line);
+  border-radius:16px;background:#fbf8f5;padding:14px 16px;color:var(--ink);resize:vertical}
+textarea:focus{outline:none;border-color:var(--gold);background:#fff}
+.saved-note{text-align:center;font-size:12px;color:var(--muted);margin-top:10px;min-height:16px}
+
+/* 宝箱 */
+.box-item{border-bottom:1px solid var(--line);padding:16px 2px}
+.box-item:last-child{border-bottom:none}
+.box-date{font-family:var(--script);font-style:italic;font-size:13px;color:var(--gold-deep);letter-spacing:.04em}
+.box-word{font-family:var(--serif);font-size:15.5px;color:var(--ink);margin-top:3px;line-height:1.8}
+.box-journal{font-size:13px;color:var(--ink-soft);margin-top:6px;white-space:pre-wrap;background:#fbf8f5;border-radius:12px;padding:10px 12px}
+.empty{text-align:center;color:var(--muted);font-size:13px;padding:30px 10px}
+
+/* 呼吸 */
+.breath-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px}
+.breath-circle{width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle at 50% 40%, rgba(120,200,224,.5), rgba(58,150,191,.22));
+  box-shadow:0 0 50px rgba(90,168,202,.3);transition:transform 4s ease-in-out;transform:scale(.6)}
+.breath-circle.in{transform:scale(1.15)}
+.breath-circle.hold{transform:scale(1.15)}
+.breath-text{font-family:var(--serif);font-size:20px;color:var(--teal-deep);margin-top:26px;min-height:30px;letter-spacing:.1em}
+.breath-count{font-family:var(--serif);font-size:38px;font-weight:500;color:var(--gold-deep);margin-top:4px;min-height:46px;line-height:1}
+.foot{text-align:center;font-family:var(--script);font-style:italic;font-size:14px;color:var(--muted);margin-top:24px}
+.hidden{display:none!important}
+
+/* 開封ゲート */
+.gate{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(120% 80% at 50% 38%, #f5efe9, #eaf2f5);transition:opacity .65s ease}
+.gate-inner{text-align:center;animation:rise .9s ease}
+.gate-title{font-family:var(--script);font-style:italic;font-weight:600;font-size:34px;color:var(--gold-deep);line-height:1}
+.gate-sub{font-family:var(--script);font-size:12px;letter-spacing:.5em;text-transform:uppercase;color:var(--teal-deep);margin:8px 0 36px}
+.giftbox{position:relative;width:184px;height:150px;margin:0 auto;cursor:pointer;animation:float 3.4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.gb-base{position:absolute;bottom:0;left:17px;width:150px;height:104px;border-radius:12px;
+  background:linear-gradient(160deg,#7cc6df,#3a96bf);box-shadow:0 18px 40px rgba(58,150,191,.34)}
+.gb-rv{position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:100%;background:linear-gradient(180deg,#e0c084,#c7a36b)}
+.gb-lid{position:absolute;top:26px;left:0;width:184px;height:48px;border-radius:12px;
+  background:linear-gradient(160deg,#8fd0e6,#4ea2c7);box-shadow:0 10px 22px rgba(58,150,191,.3);z-index:2;
+  transition:transform 1s cubic-bezier(.3,.85,.25,1),opacity 1s ease}
+.gb-bow{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:70px;height:34px}
+.gb-bow::before,.gb-bow::after{content:"";position:absolute;top:0;width:32px;height:34px;border-radius:50%;
+  background:linear-gradient(160deg,#e6c98e,#c7a36b);box-shadow:0 3px 8px rgba(168,133,74,.35)}
+.gb-bow::before{left:0;transform:rotate(-20deg)}
+.gb-bow::after{right:0;transform:rotate(20deg)}
+.gb-knot{position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(160deg,#efd9a6,#c7a36b);z-index:3;box-shadow:0 3px 8px rgba(168,133,74,.4)}
+.gate-hint{margin-top:34px;font-size:13px;color:var(--muted);letter-spacing:.1em;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+.gate.open .giftbox{animation:none}
+.gate.open .gb-lid{transform:translateY(-180px) rotate(-12deg);opacity:0}
+.gate.open .gb-base{box-shadow:0 0 70px rgba(130,205,228,.7);transform:scale(1.05);transition:all 1s ease}
+.gate.open .gate-hint{opacity:0;transition:opacity .4s}
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+  <div class="gate-inner">
+    <div class="gate-title">Be Grace</div>
+    <div class="gate-sub">A Gift for You</div>
+    <div class="giftbox" id="giftbox">
+      <div class="gb-lid"><div class="gb-bow"></div><div class="gb-knot"></div></div>
+      <div class="gb-base"><div class="gb-rv"></div></div>
+    </div>
+    <div class="gate-hint">タップして、そっと開けてください</div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="brand">
+    <div class="brand-mark">Be Grace</div>
+    <div class="brand-sub">Daily Gift</div>
+  </div>
+  <div class="welcome">ようこそ。ここは、あなたの毎日をそっと整える小さな場所。<br>一日ひとつ、自分にやさしさを贈りにきてください。</div>
+
+  <div class="nav" id="nav">
+    <button data-t="today" class="active">今日</button>
+    <button data-t="box">ことばの宝箱</button>
+    <button data-t="breath">ひと呼吸</button>
+  </div>
+
+  <div id="view"></div>
+  <div class="foot">— for you, with grace —</div>
+</div>
+
+<script>
+(function(){
+  var KEY='begrace_daily_gift_v1';
+  var SHARE_URL=''; // ← 19日に、配布用のギフトURLを入れる（例：begrace.jp/gift）
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
+  function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+  var state=load();
+  if(!state.received) state.received={}; // {date: wordIndex}
+  if(!state.journal)  state.journal={};  // {date: text}
+
+  // 開封ゲート（初回はギフトボックスを開ける演出）
+  var gate=document.getElementById('gate');
+  function openGift(){
+    if(gate.getAttribute('data-done'))return;
+    gate.setAttribute('data-done','1');
+    gate.classList.add('open');
+    state.opened=true; save();
+    setTimeout(function(){gate.style.opacity='0';},1150);
+    setTimeout(function(){gate.style.display='none';},1800);
+  }
+  if(state.opened){gate.style.display='none';}
+  else{gate.onclick=openGift;}
+
+  var WORDS=[
+    "今日が、あなたの最初の1日。",
+    "整えるほど、人生はやさしくめぐりだす。",
+    "出すのが先。手放すほど、両手はやさしいもので満ちていく。",
+    "「やる」から、やる気は生まれる。まず小さく、ひとつだけ。",
+    "小さな「できた」の積み重ねが、自分を信じる力になる。",
+    "整える時間は、後回しにせず、先に置いておくもの。",
+    "美しさは、自分を雑に扱わない、やさしい姿勢から。",
+    "感じるほど、豊かさは受け取りやすくなる。",
+    "カラダがゆるむと、心に余白が生まれる。",
+    "あなたは今、本来のあなたに還っていい。",
+    "やりたいこと（want to）で動くと、人は軽やかに進む。",
+    "余白があるから、新しい流れが入ってくる。",
+    "比べるなら、誰かとではなく、昨日のあなたと。",
+    "今日ほっとした瞬間を、ひとつ、そっと味わう。",
+    "心地よさは、あなたのいちばん正しい羅針盤。",
+    "満ちているあなたから、今日を始めよう。",
+    "ひと呼吸で、あなたはちゃんと、ととのう。",
+    "受け取る力は、感じる力から育っていく。",
+    "あなたはもう、十分に美しい。",
+    "ゆるめるほど、本来の輝きが、ふっと現れる。",
+    "カラダは、いつもあなたの味方。やさしく扱おう。",
+    "あなたが触れられるのは、いつも“今この瞬間”だけ。",
+    "静けさから動くと、同じ一歩でも、遠くまで行ける。",
+    "決めつけをそっとほどくと、可能性がひらく。",
+    "あなたの「好き」は、最高の自己投資。",
+    "流れていることが、元気の源。呼吸も、巡りも。",
+    "完璧よりも、心地よい一瞬を、たくさん。",
+    "自分を大切にする時間は、わがままじゃなく、土台。",
+    "問いを置くだけで、答えはやさしく近づいてくる。",
+    "今日のあなたに、花マルをあげていい。",
+    "安心したカラダが、本当に欲しいものを教えてくれる。",
+    "手放すと決めた瞬間から、巡りは動き出す。",
+    "あなたは、富と奇跡の、真っ最中。",
+    "やさしさは、まず自分に。そこから、めぐっていく。",
+    "整っているほど、あなたも、まわりも、うるおう。",
+    "明日もまた、ここで、自分を整えにこよう。"
+  ];
+  var PROMPTS=[
+    "今日、自分にかけたいやさしい言葉は？",
+    "今日、心地よかった瞬間をひとつ。",
+    "今日のあなたが、少しでも誇れること。",
+    "そっと手放したい思いを、ひとつ。",
+    "今日、ありがとうと思えたこと。",
+    "体が今、欲しているものは？",
+    "明日の自分に、贈りたい言葉。",
+    "いま、満たされている部分はどこ？",
+    "今日いちばん、ほっとした時間。",
+    "あなたが「美しいな」と感じたもの。",
+    "今のあなたに必要な休みは？",
+    "今日の自分に100点をあげるなら、どんな理由？",
+    "大切な人へ、心の中のひとこと。",
+    "小さく整えたいことを、ひとつだけ。"
+  ];
+
+  function pad(n){return (n<10?'0':'')+n;}
+  function todayISO(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+  function dayOfYear(d){var s=new Date(d.getFullYear(),0,0);return Math.floor((d-s)/86400000);}
+  function wordIndexFor(d){return dayOfYear(d)%WORDS.length;}
+  function promptFor(d){return PROMPTS[dayOfYear(d)%PROMPTS.length];}
+  function greet(){var h=new Date().getHours();return h<5?'こんばんは':h<11?'おはようございます':h<18?'こんにちは':'こんばんは';}
+  function fmtDate(iso){var p=(iso||'').split('-');if(p.length<3)return iso;return (+p[1])+'月'+(+p[2])+'日';}
+  function streak(){
+    var c=0,d=new Date();
+    for(;;){var iso=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+      if(state.received[iso]!==undefined){c++;d.setDate(d.getDate()-1);}else break;}
+    return c;
+  }
+
+  var view=document.getElementById('view'), tab='today', breathTimer=null;
+  document.querySelectorAll('#nav button').forEach(function(b){
+    b.onclick=function(){document.querySelectorAll('#nav button').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');tab=b.dataset.t;render();};
+  });
+
+  function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
+  function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  function render(){
+    view.innerHTML='';
+    if(tab==='today') return renderToday();
+    if(tab==='box')   return renderBox();
+    if(tab==='breath')return renderBreath();
+  }
+
+  function renderToday(){
+    var today=todayISO();
+    var card=el('div','card');
+    var nd=new Date(),wd=['日','月','火','水','木','金','土'][nd.getDay()];
+    card.appendChild(el('div','date',(nd.getMonth()+1)+'月'+nd.getDate()+'日（'+wd+'）'));
+    card.appendChild(el('div','greet',greet()));
+    var s=streak();
+    if(s>0){
+      var st=el('div','streak','<span class="num">'+s+'</span><span class="lbl">日連続で、<br>自分を整えています</span>');
+      card.appendChild(st);
+    }
+    view.appendChild(card);
+
+    var wcard=el('div','card');
+    wcard.appendChild(el('div','eyebrow','今日のことば'));
+    if(state.received[today]!==undefined){
+      wcard.appendChild(el('div','word','“ '+esc(WORDS[state.received[today]])+' ”'));
+      wcard.appendChild(el('div','word-foot','— 今日のあなたへ —'));
+    }else{
+      var teaser=el('div','word');teaser.style.color='var(--muted)';teaser.textContent='そっと深呼吸して、受け取ってください。';
+      wcard.appendChild(teaser);
+      var btn=el('button','btn','今日のことばを受け取る');
+      btn.style.marginTop='22px';
+      btn.onclick=function(){state.received[today]=wordIndexFor(new Date());save();render();};
+      wcard.appendChild(btn);
+    }
+    view.appendChild(wcard);
+
+    // 今日の小さな問い
+    var jcard=el('div','card');
+    jcard.appendChild(el('div','eyebrow','今日の小さな問い'));
+    jcard.appendChild(el('div','prompt',esc(promptFor(new Date()))));
+    var ta=el('textarea');ta.placeholder='一行だけでも。あなたの正直な気持ちを。';ta.value=state.journal[today]||'';
+    var note=el('div','saved-note','');
+    var tmr;
+    ta.oninput=function(){state.journal[today]=ta.value;save();note.textContent='そっと保存しました 🤍';clearTimeout(tmr);tmr=setTimeout(function(){note.textContent='';},1500);};
+    jcard.appendChild(ta);jcard.appendChild(note);
+    view.appendChild(jcard);
+  }
+
+  function appendShare(){
+    var card=el('div','card');
+    card.appendChild(el('div','eyebrow','おすそわけ'));
+    card.appendChild(el('div','word','このギフトで心がふっとゆるんだら、<br>あなたの大切な人にも、そっと贈ってください 🤍'));
+    card.appendChild(el('div','word-foot','— やさしさは、めぐる —'));
+    var b=el('button','btn','🎁 大切な人に贈る');b.style.marginTop='20px';
+    b.onclick=function(){
+      var msg='🎁 Be Grace から、毎日をそっと整える小さなギフト。\n一日ひとつ、自分にやさしさを贈りにきてね。'+(SHARE_URL?('\n'+SHARE_URL):'');
+      if(navigator.share){navigator.share({title:'Be Grace｜Daily Gift',text:msg}).catch(function(){});return;}
+      var t=document.createElement('textarea');t.value=msg;document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);
+      var o=b.textContent;b.textContent='コピーしました 🤍';setTimeout(function(){b.textContent=o;},1700);
+    };
+    card.appendChild(b);view.appendChild(card);
+  }
+  function appendReplay(){
+    var w=el('div');w.style.textAlign='center';w.style.margin='6px 0 0';
+    var b=el('button','btn soft','🎁 ギフトをもう一度開ける');
+    b.onclick=function(){state.opened=false;save();location.reload();};
+    w.appendChild(b);view.appendChild(w);
+  }
+  function renderBox(){
+    var card=el('div','card');
+    card.appendChild(el('div','eyebrow','ことばの宝箱'));
+    var dates=Object.keys(state.received).sort(function(a,b){return b.localeCompare(a);});
+    if(!dates.length){
+      card.appendChild(el('div','empty','まだ空っぽです。<br>「今日」で最初のことばを受け取ってください 🤍'));
+      view.appendChild(card);appendShare();appendReplay();return;
+    }
+    card.appendChild(el('div','streak','<span class="num">'+dates.length+'</span><span class="lbl">個のことばを<br>受け取りました</span>'));
+    view.appendChild(card);
+
+    var list=el('div','card');
+    dates.forEach(function(d){
+      var item=el('div','box-item');
+      item.appendChild(el('div','box-date',fmtDate(d)));
+      item.appendChild(el('div','box-word','“ '+esc(WORDS[state.received[d]]||'')+' ”'));
+      if(state.journal[d]) item.appendChild(el('div','box-journal',esc(state.journal[d])));
+      list.appendChild(item);
+    });
+    view.appendChild(list);
+    appendShare();
+    appendReplay();
+  }
+
+  function renderBreath(){
+    if(breathTimer){clearInterval(breathTimer);breathTimer=null;}
+    var card=el('div','card');
+    card.appendChild(el('div','eyebrow','ひと呼吸'));
+    card.appendChild(el('div','prompt','1分で、心がやさしく満ちていく呼吸。<br>おだやかさと、心地よい軽やかさが戻る時間 🤍'));
+    var bn=el('div');bn.style.cssText='text-align:center;font-size:12px;color:var(--muted);margin-bottom:4px';
+    bn.textContent='吸う4秒 ・ 止める2秒 ・ 吐く6秒 を 3回';
+    card.appendChild(bn);
+    var stage=el('div','breath-stage');
+    var circle=el('div','breath-circle');
+    var txt=el('div','breath-text','準備ができたら');
+    stage.appendChild(circle);stage.appendChild(txt);
+    card.appendChild(stage);
+    var btn=el('button','btn soft','3回、呼吸する');
+    btn.style.marginTop='10px';
+    card.appendChild(btn);
+    view.appendChild(card);
+
+    var phases=[{label:'吸って',sec:4,cls:'in'},{label:'とめて',sec:2,cls:'hold'},{label:'吐いて',sec:6,cls:''}];
+    var cycles=3, running=false;
+    btn.onclick=function(){
+      if(running)return;running=true;btn.style.display='none';
+      var pi=0, ci=0, remain=0;
+      function startPhase(){
+        var p=phases[pi];
+        txt.textContent=p.label;
+        circle.style.transitionDuration=p.sec+'s';
+        circle.className='breath-circle'+(p.cls?(' '+p.cls):'');
+        remain=p.sec;
+        breathTimer=setInterval(function(){
+          remain--;
+          if(remain>0){return;}
+          clearInterval(breathTimer);breathTimer=null;
+          pi++; if(pi>=phases.length){pi=0;ci++;}
+          if(ci>=cycles){finish();return;}
+          startPhase();
+        },1000);
+      }
+      function finish(){
+        circle.className='breath-circle';circle.style.transitionDuration='';
+        txt.textContent='ととのいました 🤍';
+        setTimeout(function(){running=false;btn.style.display='';btn.textContent='もう一度';},1800);
+      }
+      startPhase();
+    };
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
