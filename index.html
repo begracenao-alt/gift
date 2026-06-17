@@ -65,6 +65,8 @@ body{font-family:var(--sans);color:var(--ink);font-weight:400;line-height:1.9;-w
 .word{font-family:var(--serif);font-size:21px;font-weight:500;line-height:2;text-align:center;color:var(--ink);animation:fade 1.1s ease}
 @keyframes fade{from{opacity:0;filter:blur(6px)}to{opacity:1;filter:none}}
 .word-foot{text-align:center;font-family:var(--script);font-style:italic;font-size:15px;color:var(--gold-deep);margin-top:18px}
+.gift-door{display:block;text-align:center;margin-top:20px;font-size:12px;letter-spacing:.18em;color:var(--gold-deep);text-decoration:none;opacity:.75;transition:opacity .3s}
+.gift-door:hover{opacity:1}
 
 .btn{display:block;width:100%;font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.06em;color:#fff;
   background:linear-gradient(135deg,var(--teal),var(--teal-deep));border:none;border-radius:999px;padding:15px;cursor:pointer;
@@ -310,12 +312,17 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     card.appendChild(el('div','word','このギフトは<br>大切な人にも贈れます 🤍'));
     var b=el('button','btn','🎁 大切な人に贈る');b.style.marginTop='22px';
     b.onclick=function(){
-      var msg='🎁 Be Grace から、毎日をそっと整える小さなギフト。\n一日ひとつ、自分にやさしさを贈りにきてね。'+(SHARE_URL?('\n'+SHARE_URL):'');
+      var msg='🎁 あなたへ、Be Grace からの小さなギフト。\n毎日ひとつ、心がそっと整う言葉を受け取りにきてね 🤍'+(SHARE_URL?('\n'+SHARE_URL):'');
       if(navigator.share){navigator.share({title:'Be Grace｜Daily Gift',text:msg}).catch(function(){});return;}
       var t=document.createElement('textarea');t.value=msg;document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);
       var o=b.textContent;b.textContent='コピーしました 🤍';setTimeout(function(){b.textContent=o;},1700);
     };
-    card.appendChild(b);view.appendChild(card);
+    card.appendChild(b);
+    // 新しい人が迷子にならない、やさしい入口
+    var door=el('a','gift-door','🤍 Be Grace を知る');
+    door.href='https://begracenao.com/guide/';door.target='_blank';door.rel='noopener';
+    card.appendChild(door);
+    view.appendChild(card);
   }
   function appendReplay(){
     var w=el('div');w.style.textAlign='center';w.style.margin='6px 0 0';
