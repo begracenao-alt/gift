@@ -149,7 +149,7 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
 <script>
 (function(){
   var KEY='begrace_daily_gift_v1';
-  var SHARE_URL=''; // ← 19日に、配布用のギフトURLを入れる（例：begrace.jp/gift）
+  var SHARE_URL='https://begracenao-alt.github.io/gift/'; // 配布用ギフトURL（自分のドメインができたら、ここを差し替え）
   function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
   function save(){localStorage.setItem(KEY,JSON.stringify(state));}
   var state=load();
