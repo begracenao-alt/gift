@@ -116,9 +116,6 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
 .gate.open .gb-base{box-shadow:0 0 70px rgba(130,205,228,.7);transform:scale(1.05);transition:all 1s ease}
 .gate.open .gate-hint{opacity:0;transition:opacity .4s}
 </style>
-<link rel="apple-touch-icon" href="apple-touch-icon.png" />
-<link rel="icon" href="icon-192.png" />
-<link rel="manifest" href="manifest.webmanifest" />
 </head>
 <body>
 <div class="gate" id="gate">
@@ -299,10 +296,8 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
 
   function appendShare(){
     var card=el('div','card');
-    card.appendChild(el('div','eyebrow','おすそわけ'));
-    card.appendChild(el('div','word','このギフトで心がふっとゆるんだら、<br>あなたの大切な人にも、そっと贈ってください 🤍'));
-    card.appendChild(el('div','word-foot','— やさしさは、めぐる —'));
-    var b=el('button','btn','🎁 大切な人に贈る');b.style.marginTop='20px';
+    card.appendChild(el('div','word','このギフトは<br>大切な人にも贈れます 🤍'));
+    var b=el('button','btn','🎁 大切な人に贈る');b.style.marginTop='22px';
     b.onclick=function(){
       var msg='🎁 Be Grace から、毎日をそっと整える小さなギフト。\n一日ひとつ、自分にやさしさを贈りにきてね。'+(SHARE_URL?('\n'+SHARE_URL):'');
       if(navigator.share){navigator.share({title:'Be Grace｜Daily Gift',text:msg}).catch(function(){});return;}
