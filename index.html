@@ -414,13 +414,13 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     var dates=Object.keys(state.received).sort(function(a,b){return b.localeCompare(a);});
     if(!dates.length){
       card.appendChild(el('div','empty','まだ空っぽです。<br>「今日」で最初のことばを受け取ってください 🤍'));
-      view.appendChild(card);appendBackup();appendShare();appendReplay();return;
+      view.appendChild(card);appendShare();appendReplay();appendBackup();return;
     }
     card.appendChild(el('div','streak','<span class="num">'+dates.length+'</span><span class="lbl">個のことばを<br>受け取りました</span>'));
     view.appendChild(card);
 
     var list=el('div','card');
-    list.style.maxHeight='48vh';list.style.overflowY='auto';list.style.webkitOverflowScrolling='touch';
+    list.style.maxHeight='34vh';list.style.overflowY='auto';list.style.webkitOverflowScrolling='touch';
     dates.forEach(function(d){
       var item=el('div','box-item');
       item.appendChild(el('div','box-date',fmtDate(d)));
@@ -430,8 +430,8 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     });
     view.appendChild(list);
     appendShare();
-    appendBackup();
     appendReplay();
+    appendBackup();
   }
 
   function renderBreath(){
