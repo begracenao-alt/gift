@@ -346,6 +346,7 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     ta.oninput=function(){state.journal[today]=ta.value;save();note.textContent='そっと保存しました 🤍';clearTimeout(tmr);tmr=setTimeout(function(){note.textContent='';},1500);};
     jcard.appendChild(ta);jcard.appendChild(note);
     view.appendChild(jcard);
+    appendShare();
   }
 
   function appendShare(){
@@ -416,6 +417,7 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     view.appendChild(card);
 
     var list=el('div','card');
+    list.style.maxHeight='48vh';list.style.overflowY='auto';list.style.webkitOverflowScrolling='touch';
     dates.forEach(function(d){
       var item=el('div','box-item');
       item.appendChild(el('div','box-date',fmtDate(d)));
@@ -424,8 +426,8 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
       list.appendChild(item);
     });
     view.appendChild(list);
-    appendBackup();
     appendShare();
+    appendBackup();
     appendReplay();
   }
 
