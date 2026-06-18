@@ -261,28 +261,32 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     "カラダは、あなたが本当はどうしたいかを、教えてくれる。",
     "整えるのは、未来を変えるいちばん近い道。"
   ];
-  var PROMPTS=[
-    "今日、自分にかけたいやさしい言葉は？",
-    "今日、心地よかった瞬間をひとつ。",
-    "今日のあなたが、少しでも誇れること。",
-    "そっと手放したい思いを、ひとつ。",
-    "今日、ありがとうと思えたこと。",
-    "カラダが今、欲しているものは？",
-    "明日の自分に、贈りたい言葉。",
-    "いま、満たされている部分はどこ？",
-    "今日いちばん、ほっとした時間。",
-    "あなたが「美しいな」と感じたもの。",
-    "今のあなたに必要な休みは？",
-    "今日の自分に100点をあげるなら、どんな理由？",
-    "大切な人へ、心の中のひとこと。",
-    "小さく整えたいことを、ひとつだけ。"
-  ];
+  // テーマごとの問い（その日のことばと同じテーマの問いが出る＝響き合う）
+  var THEME_Q={
+    self:    "今日、自分にかけたいやさしい言葉は？",
+    grati:   "今日、ありがとうと思えたこと。",
+    body:    "カラダが今、欲しているものは？",
+    release: "そっと手放したい思いを、ひとつ。",
+    savor:   "今日、心地よかった瞬間をひとつ。",
+    fullness:"いま、満たされている部分はどこ？",
+    beauty:  "あなたが「美しいな」と感じたもの。",
+    rest:    "今のあなたに必要な休みは？",
+    future:  "明日の自分に、贈りたい言葉。",
+    proud:   "今日の自分に100点をあげるなら、どんな理由？",
+    step:    "小さく整えたいことを、ひとつだけ。",
+    now:     "今、ふっと感じている感覚を、ひとつ。",
+    flow:    "今、流れに乗れている感じはある？",
+    change:  "いま、そっとほどきたい思い込みは？",
+    connect: "大切な人へ、心の中のひとこと。"
+  };
+  // 各ことばのテーマ（WORDSと同じ並び。ことばと問いを同じテーマで響かせる）
+  var WTHEME=["step","flow","release","step","proud","step","beauty","fullness","rest","self","step","rest","proud","savor","savor","fullness","now","fullness","beauty","rest","body","now","step","change","savor","flow","savor","self","change","proud","body","release","fullness","self","flow","future","body","rest","now","change","step","body","flow","self","release","connect","savor","fullness","change","self","beauty","flow","grati","rest","change","fullness","self","future","proud","future","body","body","release","change","change","now","change","body","future"];
 
   function pad(n){return (n<10?'0':'')+n;}
   function todayISO(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
   function dayOfYear(d){var s=new Date(d.getFullYear(),0,0);return Math.floor((d-s)/86400000);}
   function wordIndexFor(d){return dayOfYear(d)%WORDS.length;}
-  function promptFor(d){return PROMPTS[dayOfYear(d)%PROMPTS.length];}
+  function promptFor(d){var i=wordIndexFor(d);var t=WTHEME[i]||"self";return THEME_Q[t]||THEME_Q.self;}
   function greet(){var h=new Date().getHours();return h<5?'こんばんは':h<11?'おはようございます':h<18?'こんにちは':'こんばんは';}
   function fmtDate(iso){var p=(iso||'').split('-');if(p.length<3)return iso;return (+p[1])+'月'+(+p[2])+'日';}
   function streak(){
