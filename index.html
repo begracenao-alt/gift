@@ -324,7 +324,7 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     var wcard=el('div','card');
     wcard.appendChild(el('div','eyebrow','今日のことば'));
     if(state.received[today]!==undefined){
-      wcard.appendChild(el('div','word','“ '+esc(WORDS[state.received[today]])+' ”'));
+      wcard.appendChild(el('div','word',esc(WORDS[state.received[today]])));
       wcard.appendChild(el('div','word-foot','— 今日のあなたへ —'));
     }else{
       var teaser=el('div','word');teaser.style.color='var(--muted)';teaser.innerHTML='そっと深呼吸して、<br>今日の言葉を受け取ってください。';
@@ -419,7 +419,7 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     dates.forEach(function(d){
       var item=el('div','box-item');
       item.appendChild(el('div','box-date',fmtDate(d)));
-      item.appendChild(el('div','box-word','“ '+esc(WORDS[state.received[d]]||'')+' ”'));
+      item.appendChild(el('div','box-word',esc(WORDS[state.received[d]]||'')));
       if(state.journal[d]) item.appendChild(el('div','box-journal',esc(state.journal[d])));
       list.appendChild(item);
     });
