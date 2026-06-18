@@ -346,7 +346,6 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
     ta.oninput=function(){state.journal[today]=ta.value;save();note.textContent='そっと保存しました 🤍';clearTimeout(tmr);tmr=setTimeout(function(){note.textContent='';},1500);};
     jcard.appendChild(ta);jcard.appendChild(note);
     view.appendChild(jcard);
-    appendShare();
   }
 
   function appendShare(){
