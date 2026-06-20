@@ -171,7 +171,7 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
 
   <div id="view"></div>
   <div class="foot">— for you, with grace —</div>
-  <a href="https://begracenao.com/guide/" class="exit-cta">🤍 Be Grace のページへ</a>
+  <a href="https://begracenao.com/gate" class="exit-cta">🤍 Be Grace をもっと知る</a>
 </div>
 
 <script>
@@ -370,10 +370,6 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
       var o=b.textContent;b.textContent='コピーしました 🤍';setTimeout(function(){b.textContent=o;},1700);
     };
     card.appendChild(b);
-    // 新しい人が迷子にならない、やさしい入口
-    var door=el('a','gift-door','🤍 Be Grace を知る');
-    door.href='https://begracenao-alt.github.io/link/';door.target='_blank';door.rel='noopener';
-    card.appendChild(door);
     view.appendChild(card);
   }
   function appendReplay(){
