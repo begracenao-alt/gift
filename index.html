@@ -314,6 +314,8 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
 
   function render(){
     view.innerHTML='';
+    var band=document.querySelector('.exit-cta');
+    if(band) band.style.display=(tab==='today')?'':'none';
     if(tab==='today') return renderToday();
     if(tab==='box')   return renderBox();
     if(tab==='breath')return renderBreath();
