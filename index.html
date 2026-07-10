@@ -136,6 +136,12 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
 .gate.open .gb-lid{transform:translateY(-180px) rotate(-12deg);opacity:0}
 .gate.open .gb-base{box-shadow:0 0 70px rgba(130,205,228,.7);transform:scale(1.05);transition:all 1s ease}
 .gate.open .gate-hint{opacity:0;transition:opacity .4s}
+.exit-cta{display:block;max-width:300px;margin:22px auto 6px;text-align:center;text-decoration:none;
+  font-family:var(--serif);font-size:15px;font-weight:500;color:#fff;letter-spacing:.05em;
+  background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+  border-radius:999px;padding:15px 22px;box-shadow:0 12px 30px rgba(169,133,74,.30);
+  transition:transform .2s ease,box-shadow .2s ease}
+.exit-cta:active{transform:translateY(1px);box-shadow:0 6px 18px rgba(169,133,74,.26)}
 </style>
 </head>
 <body>
@@ -165,6 +171,7 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
 
   <div id="view"></div>
   <div class="foot">— for you, with grace —</div>
+  <a href="https://begracenao-alt.github.io/gate/" class="exit-cta">🤍 Be Grace をもっと知る</a>
 </div>
 
 <script>
@@ -307,6 +314,8 @@ textarea:focus{outline:none;border-color:var(--gold);background:#fff}
 
   function render(){
     view.innerHTML='';
+    var band=document.querySelector('.exit-cta');
+    if(band) band.style.display=(tab==='today')?'':'none';
     if(tab==='today') return renderToday();
     if(tab==='box')   return renderBox();
     if(tab==='breath')return renderBreath();
